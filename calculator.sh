@@ -44,6 +44,15 @@ division() {
     println "success" "$1 / $2 = $RESULT";
 }
 
+getOptionValues() {
+    local __firstValue=$1;
+    local __secondValue=$2;
+    read -p "First value: " FIRST_VALUE;
+    read -p "Second value: " SECOND_VALUE;
+    eval $__firstValue="$FIRST_VALUE";
+    eval $__secondValue="$SECOND_VALUE";
+}
+
 askOption() {
     echo "What would you like to do:";
     echo "1.Addition";
@@ -55,34 +64,27 @@ askOption() {
     
     case $OPTION in
         1)
-            read -p "First value: " FIRST_VALUE;
-            read -p "Second value: " SECOND_VALUE;
+            getOptionValues FIRST_VALUE SECOND_VALUE;
             addition $FIRST_VALUE $SECOND_VALUE;
         ;;
         2)
-            read -p "First value: " FIRST_VALUE;
-            read -p "Second value: " SECOND_VALUE;
+            getOptionValues FIRST_VALUE SECOND_VALUE;
             subtraction $FIRST_VALUE $SECOND_VALUE;
         ;;
         3)
-            read -p "First value: " FIRST_VALUE;
-            read -p "Second value: " SECOND_VALUE;
+            getOptionValues FIRST_VALUE SECOND_VALUE;
             multiplication $FIRST_VALUE $SECOND_VALUE;
         ;;
         4)
-            read -p "First value: " FIRST_VALUE;
-            read -p "Second value: " SECOND_VALUE;
+            getOptionValues FIRST_VALUE SECOND_VALUE;
             division $FIRST_VALUE $SECOND_VALUE;
-        ;;
-        hello)
-            echo "Hello World";
         ;;
         *)
             println "error" "You must select a valid option, try again !"
             askOption;
         ;;
     esac
-
+    
     askOption;
 }
 
