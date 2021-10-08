@@ -1,6 +1,6 @@
 #! /bin/sh
 
-echo "Welcome to my basic calculator";
+echo "Welcome to my basic calculator\n";
 
 # COLOURS
 RED_COLOUR='\033[0;31m';
@@ -29,8 +29,22 @@ addition() {
     println "success" "$1 + $2 = $SUM";
 }
 
+subtraction() {
+    RESULT=$(($1 - $2))
+    println "success" "$1 - $2 = $RESULT";
+}
+
+multiplication() {
+    RESULT=$(($1 * $2))
+    println "success" "$1 * $2 = $RESULT";
+}
+
 askOption() {
-    echo "\nWhat would you like to do:\n 1. Addition\n 2.Subtraction\n";
+    echo "What would you like to do:";
+    echo "1.Addition";
+    echo "2.Subtraction";
+    echo "3.Multiplication";
+    echo "";
     read -p "" OPTION;
     
     case $OPTION in
@@ -38,6 +52,16 @@ askOption() {
             read -p "First value: " FIRST_VALUE;
             read -p "Second value: " SECOND_VALUE;
             addition $FIRST_VALUE $SECOND_VALUE;
+        ;;
+        2)
+            read -p "First value: " FIRST_VALUE;
+            read -p "Second value: " SECOND_VALUE;
+            subtraction $FIRST_VALUE $SECOND_VALUE;
+        ;;
+        3)
+            read -p "First value: " FIRST_VALUE;
+            read -p "Second value: " SECOND_VALUE;
+            multiplication $FIRST_VALUE $SECOND_VALUE;
         ;;
         hello)
             echo "Hello World";
@@ -47,6 +71,8 @@ askOption() {
             askOption;
         ;;
     esac
+
+    askOption;
 }
 
 askOption;
