@@ -39,11 +39,17 @@ multiplication() {
     println "success" "$1 * $2 = $RESULT";
 }
 
+division() {
+    RESULT=$(($1 / $2))
+    println "success" "$1 / $2 = $RESULT";
+}
+
 askOption() {
     echo "What would you like to do:";
     echo "1.Addition";
     echo "2.Subtraction";
     echo "3.Multiplication";
+    echo "4.Division";
     echo "";
     read -p "" OPTION;
     
@@ -62,6 +68,11 @@ askOption() {
             read -p "First value: " FIRST_VALUE;
             read -p "Second value: " SECOND_VALUE;
             multiplication $FIRST_VALUE $SECOND_VALUE;
+        ;;
+        4)
+            read -p "First value: " FIRST_VALUE;
+            read -p "Second value: " SECOND_VALUE;
+            division $FIRST_VALUE $SECOND_VALUE;
         ;;
         hello)
             echo "Hello World";
